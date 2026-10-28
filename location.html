@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Location · Square Luxury Apartments Berovo</title>
+<script>document.documentElement.dataset.lang=localStorage.getItem('sq-lang-mk')||'sr'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="site.js"></script>
+<style>
+html,body{margin:0;background:#F4F1EA;color:#0E1A24;font-family:'Inter Tight',sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#0F4C6E;text-decoration:none}a:hover{color:#0C1820}
+html[data-lang="en"] body [lang="sr"],html[data-lang="sr"] body [lang="en"]{display:none !important}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto !important}
+::selection{background:#0F4C6E;color:#F4F1EA}
+@media (hover:hover) and (pointer:fine){body,a,button{cursor:none}}
+</style>
+</helmet>
+<dc-import name="Nav" current="location" hint-size="100%,1px"></dc-import>
+
+<div style="background:#0C1820;color:#F4F1EA">
+<section data-screen-label="Hero" style="min-height:92svh;padding:clamp(140px,18vw,220px) clamp(20px,5vw,64px) clamp(60px,8vw,100px);display:flex;align-items:flex-end">
+  <div style="max-width:1280px;width:100%;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px;align-items:end">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <span data-reveal="hero" style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#C2A273">23 Avgust br. 11 · Berovo</span>
+      <h1 data-split="hero" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(56px,9vw,140px);line-height:.92;letter-spacing:-.035em;text-wrap:balance"><span lang="en">Between the <em style="color:#C2A273">square</em> and the lake</span><span lang="sr">Помеѓу <em style="color:#C2A273">плоштадот</em> и езерото</span></h1>
+      <p data-reveal="hero" data-delay=".3" style="margin:0;max-width:460px;font-size:18px;line-height:1.55;color:rgba(244,241,234,.78)"><span lang="en">Berovo sits high in the Maleševo Mountains of eastern North Macedonia – pine forest, clean air and a slow, small-town rhythm. You are right in the middle of it.</span><span lang="sr">Берово лежи високо во Малешевските планини на исток од Северна Македонија – борова шума, чист воздух и бавен ритам на мало гратче. Вие сте во самиот центар.</span></p>
+    </div>
+    <div data-reveal="hero" data-delay=".4" data-cursor="view" style="position:relative;height:clamp(360px,52svh,560px);border-radius:24px;overflow:hidden">
+      <img src="uploads/581185229.jpg" alt="Aerial view of the building and rooftop terrace" style="width:100%;height:100%;object-fit:cover">
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Distances" style="padding:clamp(40px,6vw,80px) clamp(20px,5vw,64px) clamp(100px,12vw,160px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:40px">
+    <h2 data-split="" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,5vw,72px);line-height:.95;letter-spacing:-.03em"><span lang="en">How far is <em style="color:#C2A273">everything</em></span><span lang="sr">Колку е сè <em style="color:#C2A273">блиску</em></span></h2>
+    <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column">
+      <sc-for list="{{ places }}" as="p" hint-placeholder-count="8">
+        <li style="position:relative;display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:22px 0">
+          <span data-draw="" style="position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(244,241,234,.22)"></span>
+          <span data-reveal="" style="display:flex;align-items:baseline;gap:18px"><span style="font-size:12px;color:#C2A273;width:22px">{{ p.n }}</span><span style="font-size:clamp(18px,2vw,26px)">{{ p.name }}</span></span>
+          <span data-reveal="" style="font-family:'Instrument Serif',serif;font-size:clamp(28px,3.2vw,48px);line-height:1;white-space:nowrap">{{ p.d }}</span>
+        </li>
+      </sc-for>
+    </ol>
+  </div>
+</section>
+</div>
+
+<section data-screen-label="Map" style="padding:clamp(80px,10vw,140px) clamp(20px,5vw,64px) 0">
+  <div style="max-width:1280px;margin:0 auto;padding:10px;border-radius:24px;background:#EAE5DA;border:1px solid rgba(0,0,0,.08)">
+    <div style="position:relative;height:clamp(380px,60svh,600px);border-radius:16px;overflow:hidden;background:#0C1820">
+      <iframe title="Map of Square Luxury Apartments, Berovo" src="https://maps.google.com/maps?q=41.706,22.8556&amp;z=15&amp;output=embed" loading="lazy" style="width:100%;height:100%;border:0;filter:grayscale(1) invert(.92) contrast(.88) brightness(.95)"></iframe>
+      <a href="https://maps.google.com/?q=41.706,22.8556" target="_blank" style="position:absolute;left:16px;bottom:16px;display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 20px;border-radius:999px;background:#F4F1EA;color:#0C1820;font-weight:500;font-size:14px;box-shadow:0 8px 30px rgba(0,0,0,.25)"><span lang="en">Open in Google Maps</span><span lang="sr">Отвори во Google Maps</span> ↗</a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Things to do" style="padding:clamp(100px,12vw,160px) clamp(20px,5vw,64px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:48px">
+    <h2 data-split="" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,6vw,92px);line-height:.95;letter-spacing:-.03em"><span lang="en">Things to <em style="color:#0F4C6E">do</em></span><span lang="sr">Што <em style="color:#0F4C6E">да правите</em></span></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px">
+      <sc-for list="{{ todo }}" as="t" hint-placeholder-count="6">
+        <article data-reveal="" style="display:flex;flex-direction:column;justify-content:space-between;gap:48px;min-height:260px;padding:28px;border-radius:24px;background:{{ t.bg }};color:{{ t.fg }};border:1px solid rgba(0,0,0,.08)">
+          <span style="font-family:'Instrument Serif',serif;font-size:44px;line-height:1;color:{{ t.ac }}">{{ t.n }}</span>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:32px;line-height:1.05">{{ t.title }}</h3>
+            <p style="margin:0;font-size:15px;line-height:1.55;opacity:.78">{{ t.text }}</p>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<dc-import name="Footer" hint-size="100%,900px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang: document.documentElement.dataset.lang || 'en' };
+  componentDidMount() {
+    this.onL = e => this.setState({ lang: e.detail });
+    addEventListener('sq-lang', this.onL);
+    const go = () => window.SQ ? SQ.scan() : setTimeout(go, 50); go();
+  }
+  componentWillUnmount() { removeEventListener('sq-lang', this.onL); }
+  renderVals() {
+    const sr = this.state.lang === 'sr';
+    const P = [
+      ['Town square, cafés & restaurants', 'Градски плоштад, кафулиња и ресторани', sr ? 'пред вратата' : 'on the doorstep'],
+      ['Bus station', 'Автобуска станица', sr ? 'неколку чекори' : 'a few steps'],
+      ['Monastery of St. Archangel Michael', 'Манастир Св. Архангел Михаил', sr ? '9 мин пеш' : '9 min walk'],
+      ['Ratevo village', 'Село Ратево', '≈ 3 km'],
+      ['Berovo Lake', 'Беровско езеро', '≈ 6 km'],
+      ['Pehčevo', 'Пехчево', '≈ 16 km'],
+      ['Strumica', 'Струмица', '35 km'],
+      ['Skopje International Airport', 'Аеродром Скопје', '139 km']
+    ];
+    const places = P.map((p, i) => ({ n: '0' + (i + 1), name: sr ? p[1] : p[0], d: p[2] }));
+    const T = [
+      ['Berovo Lake', 'Беровско езеро', 'A mountain lake ringed by pine forest – swimming in summer, quiet walks and picnics the rest of the year.', 'Планинско езеро опкружено со борова шума – капење во лето, мирни прошетки и излети во остатокот од годината.'],
+      ['St. Archangel Michael Monastery', 'Манастир Св. Архангел Михаил', 'A 19th-century monastery and garden, a short walk from the apartments.', 'Манастир од 19 век со градина, на кратка прошетка од апартманите.'],
+      ['Maleševo trails', 'Малешевски патеки', 'Marked hiking and cycling routes through beech and pine, straight from town.', 'Обележани пешачки и велосипедски патеки низ бука и бор, директно од градот.'],
+      ['Ratevo village', 'Село Ратево', 'A traditional village just outside Berovo, known for its old houses and calm.', 'Традиционално село до Берово, познато по старите куќи и мирот.'],
+      ['Berovo cheese & local food', 'Беровско сирење и локална кујна', 'Taste the town’s famous cheese and mountain dishes in the taverns around the square.', 'Пробајте го познатото беровско сирење и планинските јадења во механите околу плоштадот.'],
+      ['Winter in the mountains', 'Зима во планините', 'Snowy forests, warm apartments with floor heating and fireside evenings in town.', 'Снежни шуми, топли апартмани со подно греење и вечери покрај камин во градот.']
+    ];
+    const todo = T.map((t, i) => {
+      const dark = i % 3 === 1;
+      return { n: '0' + (i + 1), title: sr ? t[1] : t[0], text: sr ? t[3] : t[2], bg: dark ? '#0F4C6E' : '#EAE5DA', fg: dark ? '#F4F1EA' : '#0E1A24', ac: dark ? '#E3CFA6' : '#0F4C6E' };
+    });
+    return { places, todo };
+  }
+}
+</script>
+</body>
+</html>

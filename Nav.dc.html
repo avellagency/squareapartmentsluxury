@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<nav data-nav="" style="position:fixed;top:14px;left:0;right:0;z-index:100;display:flex;justify-content:center;padding:0 14px;pointer-events:none">
+  <div style="pointer-events:auto;width:100%;max-width:1180px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:7px 7px 7px 22px;border-radius:999px;background:rgba(244,241,234,.62);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(255,255,255,.5);box-shadow:0 10px 40px rgba(12,24,32,.08)">
+    <a href="index.html" style="display:flex;align-items:baseline;gap:6px;color:#0E1A24;line-height:1;white-space:nowrap">
+      <span style="font-family:'Instrument Serif',serif;font-size:25px;letter-spacing:-.01em">Square</span>
+      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:17px;color:#9A7F52">Luxury</span>
+    </a>
+    <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;gap:30px;font-size:14px;font-weight:500">
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="4">
+          <a href="{{ l.href }}" style="color:{{ l.col }};transition:color .4s" style-hover="color:#0F4C6E">{{ l.label }}</a>
+        </sc-for>
+      </div>
+    </sc-if>
+    <div style="display:flex;align-items:center;gap:6px">
+      <button onClick="{{ toggleLang }}" aria-label="Switch language" style="height:44px;min-width:52px;padding:0 12px;border-radius:999px;border:1px solid rgba(14,26,36,.14);background:transparent;color:#0E1A24;font:600 12px/1 'Inter Tight',sans-serif;letter-spacing:.12em">{{ langLabel }}</button>
+      <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+        <a href="book.html" data-mag="" style="display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 20px;border-radius:999px;background:#0C1820;color:#F4F1EA;font:500 14px/1 'Inter Tight',sans-serif;transition:background .5s" style-hover="background:#0F4C6E;color:#F4F1EA"><span lang="en">Book your stay</span><span lang="sr">Резервирај престој</span><span data-arrow="">→</span></a>
+      </sc-if>
+      <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+        <a href="gallery.html" style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(14,26,36,.14);color:{{ galCol }};font:500 13px/1 'Inter Tight',sans-serif"><span lang="en">Gallery</span><span lang="sr">Галерија</span></a>
+      </sc-if>
+      <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ openMenu }}" aria-label="Open menu" style="height:44px;width:44px;border-radius:999px;border:0;background:#0C1820;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:16px;height:1.5px;background:#F4F1EA"></span><span style="width:16px;height:1.5px;background:#F4F1EA"></span></button>
+      </sc-if>
+    </div>
+  </div>
+</nav>
+<sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:200;background:#0C1820;color:#F4F1EA;display:flex;flex-direction:column;padding:24px 24px 32px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span style="font-family:'Instrument Serif',serif;font-size:25px">Square <em style="color:#C2A273">Luxury</em></span>
+      <button onClick="{{ closeMenu }}" aria-label="Close menu" style="height:44px;width:44px;border-radius:999px;border:1px solid rgba(244,241,234,.25);background:transparent;color:#F4F1EA;font-size:20px">×</button>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:6px">
+      <sc-for list="{{ links }}" as="l" hint-placeholder-count="4">
+        <div style="overflow:hidden"><a data-mlink="" href="{{ l.href }}" style="display:block;font-family:'Instrument Serif',serif;font-size:clamp(48px,13vw,84px);line-height:1.05;color:#F4F1EA;letter-spacing:-.02em">{{ l.label }}</a></div>
+      </sc-for>
+    </div>
+    <a href="book.html" style="display:flex;justify-content:center;align-items:center;gap:10px;height:56px;border-radius:999px;background:#F4F1EA;color:#0C1820;font:500 16px/1 'Inter Tight',sans-serif"><span lang="en">Book your stay</span><span lang="sr">Резервирај престој</span> →</a>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;current&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;apartments&quot;,&quot;location&quot;,&quot;gallery&quot;,&quot;book&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { open: false, mobile: innerWidth < 900, lang: document.documentElement.dataset.lang || 'en' };
+  componentDidMount() {
+    this.onR = () => this.setState({ mobile: innerWidth < 900 });
+    this.onL = e => this.setState({ lang: e.detail });
+    addEventListener('resize', this.onR); addEventListener('sq-lang', this.onL);
+    const go = () => window.SQ ? SQ.scan() : setTimeout(go, 50); go();
+  }
+  componentWillUnmount() { removeEventListener('resize', this.onR); removeEventListener('sq-lang', this.onL); }
+  componentDidUpdate(_, p) {
+    if (p.open === this.state.open) return;
+    window.SQ && SQ.lock(this.state.open);
+    if (this.state.open && window.gsap) gsap.fromTo('[data-mlink]', { yPercent: 110 }, { yPercent: 0, duration: 1.1, ease: 'expo.out', stagger: .08, delay: .1 });
+  }
+  renderVals() {
+    const sr = this.state.lang === 'sr', cur = this.props.current;
+    const L = [['apartments', 'Apartments', 'Апартмани'], ['location', 'Location', 'Локација'], ['gallery', 'Gallery', 'Галерија'], ['book', 'Book', 'Резервација']];
+    const links = L.map(([k, en, s]) => ({ href: k + '.html', label: sr ? s : en, col: k === cur ? '#0F4C6E' : '#0E1A24' }));
+    return {
+      galCol: cur === 'gallery' ? '#0F4C6E' : '#0E1A24',
+      links: this.state.mobile ? links.filter(l => l.href !== 'gallery.html') : links, desktop: !this.state.mobile, mobile: this.state.mobile, open: this.state.open,
+      langLabel: sr ? 'EN' : 'MK',
+      toggleLang: () => window.SQ && SQ.setLang(sr ? 'en' : 'sr'),
+      openMenu: () => this.setState({ open: true }), closeMenu: () => this.setState({ open: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

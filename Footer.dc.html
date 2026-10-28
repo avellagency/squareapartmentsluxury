@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<footer style="background:#0C1820;color:#F4F1EA;padding:clamp(80px,12vw,160px) clamp(20px,5vw,64px) 0;overflow:hidden;border-radius:24px 24px 0 0">
+  <div style="max-width:1280px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:40px;padding-bottom:clamp(64px,9vw,120px);border-bottom:1px solid rgba(244,241,234,.12)">
+      <h2 data-split="" style="margin:0;max-width:820px;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,8vw,124px);line-height:.95;letter-spacing:-.03em;text-wrap:balance">
+        <span lang="en">Your Berovo <em style="color:#C2A273">escape</em> awaits</span>
+        <span lang="sr">Вашето бегство во <em style="color:#C2A273">Берово</em> чека</span>
+      </h2>
+      <a href="book.html" data-mag="" style="display:inline-flex;align-items:center;gap:12px;height:60px;padding:0 30px;border-radius:999px;background:#F4F1EA;color:#0C1820;font:500 16px/1 'Inter Tight',sans-serif;transition:background .5s" style-hover="background:#C2A273;color:#0C1820"><span lang="en">Book your stay</span><span lang="sr">Резервирај престој</span><span data-arrow="">→</span></a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;padding:56px 0;font-size:15px;line-height:1.7">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-family:'Instrument Serif',serif;font-size:28px;line-height:1">Square <em style="color:#C2A273">Luxury</em></span>
+        <span style="color:rgba(244,241,234,.66);max-width:260px"><span lang="en">Boutique apartments on the town square of Berovo, North Macedonia.</span><span lang="sr">Бутик апартмани на градскиот плоштад во Берово, Северна Македонија.</span></span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <span style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#C2A273;margin-bottom:8px"><span lang="en">Pages</span><span lang="sr">Страници</span></span>
+        <a href="apartments.html" style="color:#F4F1EA"><span lang="en">Apartments</span><span lang="sr">Апартмани</span></a>
+        <a href="location.html" style="color:#F4F1EA"><span lang="en">Location</span><span lang="sr">Локација</span></a>
+        <a href="gallery.html" style="color:#F4F1EA"><span lang="en">Gallery</span><span lang="sr">Галерија</span></a>
+        <a href="book.html" style="color:#F4F1EA"><span lang="en">Book</span><span lang="sr">Резервација</span></a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <span style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#C2A273;margin-bottom:8px"><span lang="en">Contact</span><span lang="sr">Контакт</span></span>
+        <a href="https://wa.me/38970583100" target="_blank" style="color:#F4F1EA">WhatsApp / Viber</a>
+        <a href="tel:+38970583100" style="color:#F4F1EA">+389 70 583 100</a>
+        <a href="mailto:squareluxuryapartments@gmail.com" style="color:#F4F1EA;word-break:break-all">squareluxuryapartments@gmail.com</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <span style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#C2A273;margin-bottom:8px"><span lang="en">Location</span><span lang="sr">Адреса</span></span>
+        <span>23 Avgust br. 11</span>
+        <span>2330 Berovo</span>
+        <span><span lang="en">North Macedonia</span><span lang="sr">Северна Македонија</span></span>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:rgba(244,241,234,.5);padding-bottom:20px">
+      <span>© 2026 Square Luxury Apartments</span>
+      <span><span lang="en">Check-in from 15:00 · Check-out by 11:00</span><span lang="sr">Пријавување од 15:00 · Одјавување до 11:00</span></span>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { const go = () => window.SQ ? SQ.scan() : setTimeout(go, 50); go(); }
+}
+</script>
+</body>
+</html>

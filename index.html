@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Square Luxury Apartments · Berovo</title>
+<script>document.documentElement.dataset.lang=localStorage.getItem('sq-lang-mk')||'sr'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="site.js"></script>
+<style>
+html,body{margin:0;background:#F4F1EA;color:#0E1A24;font-family:'Inter Tight',sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#0F4C6E;text-decoration:none}a:hover{color:#0C1820}
+html[data-lang="en"] body [lang="sr"],html[data-lang="sr"] body [lang="en"]{display:none !important}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto !important}
+::selection{background:#0F4C6E;color:#F4F1EA}
+input,select,textarea,button{font-family:inherit}
+@media (hover:hover) and (pointer:fine){body,a,button{cursor:none}}
+</style>
+</helmet>
+<dc-import name="Nav" current="home" hint-size="100%,1px"></dc-import>
+
+<section data-screen-label="Hero" style="position:relative;height:100svh;min-height:620px;overflow:hidden;background:#0C1820;color:#F4F1EA">
+  <img data-zoom="" src="uploads/hero-facade.png" alt="Square Luxury Apartments facade and rooftop terrace at twilight" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.15)">
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,24,32,.35) 0%,rgba(12,24,32,.05) 35%,rgba(12,24,32,.7) 100%)"></div>
+  <div style="position:relative;height:100%;max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,64px) clamp(28px,4vw,48px);display:flex;flex-direction:column;justify-content:flex-end;gap:28px">
+    <span data-reveal="hero" style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:rgba(244,241,234,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(244,241,234,.25);font-size:13px;letter-spacing:.04em"><span style="width:6px;height:6px;border-radius:50%;background:#C2A273"></span><span lang="en">Berovo · Maleševo Mountains</span><span lang="sr">Берово · Малешевски планини</span></span>
+    <h1 data-split="hero" style="margin:0;max-width:1000px;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(56px,10vw,152px);line-height:.92;letter-spacing:-.035em;text-wrap:balance">
+      <span lang="en">Stay in the heart of <em style="color:#E3CFA6">Berovo</em></span>
+      <span lang="sr">Одмор во срцето на <em style="color:#E3CFA6">Берово</em></span>
+    </h1>
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px">
+      <p data-reveal="hero" data-delay=".3" style="margin:0;max-width:480px;font-size:clamp(16px,1.4vw,19px);line-height:1.55;color:rgba(244,241,234,.88);text-wrap:pretty">
+        <span lang="en">Boutique apartments on the town square – walnut, velvet and marble inside, a rooftop pergola terrace and the hills of Maleševo outside.</span>
+        <span lang="sr">Бутик апартмани на градскиот плоштад – орев, кадифе и мермер внатре, кровна тераса под пергола и Малешевските ридови надвор.</span>
+      </p>
+      <div data-reveal="hero" data-delay=".45" style="display:flex;flex-wrap:wrap;gap:10px">
+        <a href="book.html" data-mag="" style="display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 28px;border-radius:999px;background:#F4F1EA;color:#0C1820;font-weight:500;font-size:15px;transition:background .5s" style-hover="background:#C2A273;color:#0C1820"><span lang="en">Book your stay</span><span lang="sr">Резервирај престој</span><span data-arrow="">→</span></a>
+        <a href="apartments.html" data-mag="" style="display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 28px;border-radius:999px;border:1px solid rgba(244,241,234,.4);color:#F4F1EA;font-weight:500;font-size:15px;transition:background .5s" style-hover="background:rgba(244,241,234,.14);color:#F4F1EA"><span lang="en">Explore</span><span lang="sr">Истражи</span><span data-arrow="">↓</span></a>
+      </div>
+    </div>
+    <form data-reveal="hero" data-delay=".6" onSubmit="{{ check }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px;padding:6px;border-radius:24px;background:rgba(244,241,234,.14);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border:1px solid rgba(244,241,234,.25)">
+      <label style="display:flex;flex-direction:column;gap:4px;padding:10px 16px;border-radius:18px;background:rgba(12,24,32,.25)">
+        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#E3CFA6"><span lang="en">Check-in</span><span lang="sr">Пристигнување</span></span>
+        <input type="date" min="{{ today }}" value="{{ ci }}" onChange="{{ setCi }}" style="background:transparent;border:0;color:#F4F1EA;font-size:15px;color-scheme:dark;outline:none;min-height:24px">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:4px;padding:10px 16px;border-radius:18px;background:rgba(12,24,32,.25)">
+        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#E3CFA6"><span lang="en">Check-out</span><span lang="sr">Заминување</span></span>
+        <input type="date" min="{{ coMin }}" value="{{ co }}" onChange="{{ setCo }}" style="background:transparent;border:0;color:#F4F1EA;font-size:15px;color-scheme:dark;outline:none;min-height:24px">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:4px;padding:10px 16px;border-radius:18px;background:rgba(12,24,32,.25)">
+        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#E3CFA6"><span lang="en">Guests</span><span lang="sr">Гости</span></span>
+        <select value="{{ g }}" onChange="{{ setG }}" style="background:transparent;border:0;color:#F4F1EA;font-size:15px;color-scheme:dark;outline:none;min-height:24px"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+      </label>
+      <button type="submit" style="min-height:56px;border:0;border-radius:18px;background:#F4F1EA;color:#0C1820;font-weight:500;font-size:15px;transition:background .5s" style-hover="background:#C2A273"><span lang="en">Check availability</span><span lang="sr">Провери достапност</span> →</button>
+    </form>
+  </div>
+  <div style="position:absolute;right:clamp(20px,3vw,40px);top:50%;display:flex;flex-direction:column;align-items:center;gap:12px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,241,234,.8);writing-mode:vertical-rl">Scroll<span data-pulse="" style="width:1px;height:48px;background:#F4F1EA"></span></div>
+</section>
+
+<section data-screen-label="Intro" style="padding:clamp(100px,14vw,200px) clamp(20px,5vw,64px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:40px">
+    <span style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#0F4C6E"><span lang="en">Square Luxury Apartments</span><span lang="sr">Square Luxury Apartments</span></span>
+    <p data-fill="" style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(34px,5.2vw,80px);line-height:1.06;letter-spacing:-.02em;text-wrap:pretty">
+      <span lang="en">Walnut floors, velvet and marble, warm light after dark – a quiet base in the centre of Berovo, a few steps from the cafés, the bus station and the road to the lake.</span>
+      <span lang="sr">Подови од орев, кадифе и мермер, топло светло навечер – мирно катче во центарот на Берово, на неколку чекори од кафулињата, автобуската станица и патот кон езерото.</span>
+    </p>
+  </div>
+</section>
+
+<section data-screen-label="Numbers" style="padding:0 clamp(20px,5vw,64px) clamp(100px,12vw,180px)">
+  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border-top:1px solid rgba(0,0,0,.08)">
+    <div style="padding:36px 24px 0 0;display:flex;flex-direction:column;gap:12px">
+      <span style="font-family:'Instrument Serif',serif;font-size:clamp(72px,8vw,120px);line-height:.9;letter-spacing:-.04em"><span data-count="9.2" data-dec="1">9.2</span></span>
+      <span style="font-size:15px;color:rgba(14,26,36,.7)"><span lang="en">Guest rating on Booking.com</span><span lang="sr">Оцена од гостите на Booking.com</span></span>
+    </div>
+    <div style="padding:36px 24px 0 0;display:flex;flex-direction:column;gap:12px">
+      <span style="font-family:'Instrument Serif',serif;font-size:clamp(72px,8vw,120px);line-height:.9;letter-spacing:-.04em"><span data-count="9.6" data-dec="1">9.6</span></span>
+      <span style="font-size:15px;color:rgba(14,26,36,.7)"><span lang="en">Location score from couples</span><span lang="sr">Оцена за локацијата од парови</span></span>
+    </div>
+    <div style="padding:36px 24px 0 0;display:flex;flex-direction:column;gap:12px">
+      <span style="font-family:'Instrument Serif',serif;font-size:clamp(72px,8vw,120px);line-height:.9;letter-spacing:-.04em"><span data-count="30">30</span><em style="font-size:.4em;color:#9A7F52"> m²</em></span>
+      <span style="font-size:15px;color:rgba(14,26,36,.7)"><span lang="en">One-bedroom apartments</span><span lang="sr">Еднособни апартмани</span></span>
+    </div>
+    <div style="padding:36px 24px 0 0;display:flex;flex-direction:column;gap:12px">
+      <span style="font-family:'Instrument Serif',serif;font-size:clamp(72px,8vw,120px);line-height:.9;letter-spacing:-.04em"><span data-count="139">139</span><em style="font-size:.4em;color:#9A7F52"> km</em></span>
+      <span style="font-size:15px;color:rgba(14,26,36,.7)"><span lang="en">To Skopje International Airport</span><span lang="sr">До аеродромот Скопје</span></span>
+    </div>
+  </div>
+</section>
+
+<section data-hscroll="" data-screen-label="Spaces" style="min-height:100svh;display:flex;flex-direction:column;justify-content:center;gap:40px;padding:80px 0;overflow:hidden">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 clamp(20px,5vw,64px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px">
+    <h2 data-split="" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,6vw,92px);line-height:.95;letter-spacing:-.03em"><span lang="en">Every room, <em style="color:#0F4C6E">considered</em></span><span lang="sr">Секоја соба, <em style="color:#0F4C6E">осмислена</em></span></h2>
+    <span style="font-size:14px;color:rgba(14,26,36,.6)">01 — 05</span>
+  </div>
+  <div data-track="" style="display:flex;gap:20px;padding:0 clamp(20px,5vw,64px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;will-change:transform">
+    <sc-for list="{{ spaces }}" as="s" hint-placeholder-count="5">
+      <article data-cursor="view" style="position:relative;flex:0 0 auto;width:min(80vw,560px);height:min(68svh,620px);border-radius:24px;overflow:hidden;scroll-snap-align:start;background:#0C1820;color:#F4F1EA">
+        <img src="{{ s.img }}" alt="{{ s.title }}" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,24,32,0) 45%,rgba(12,24,32,.78))"></div>
+        <span style="position:absolute;top:20px;left:24px;font-family:'Instrument Serif',serif;font-size:44px;line-height:1">{{ s.n }}</span>
+        <div style="position:absolute;left:24px;right:24px;bottom:24px;display:flex;flex-direction:column;gap:8px">
+          <h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(32px,3vw,44px);line-height:1">{{ s.title }}</h3>
+          <p style="margin:0;font-size:15px;line-height:1.5;color:rgba(244,241,234,.85);max-width:380px">{{ s.text }}</p>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<section data-clip="" data-screen-label="Terrace" style="position:relative;height:100svh;overflow:hidden;background:#F4F1EA">
+  <div data-clip-img="" style="position:absolute;inset:0;overflow:hidden;clip-path:inset(22% 26% 22% 26% round 24px)">
+    <img src="uploads/581185233.jpg" alt="Rooftop pergola terrace" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+    <div style="position:absolute;inset:0;background:rgba(12,24,32,.38)"></div>
+  </div>
+  <div data-clip-text="" style="position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center;color:#F4F1EA;padding:0 24px">
+    <span style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#E3CFA6"><span lang="en">The rooftop</span><span lang="sr">Кровна тераса</span></span>
+    <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(52px,9vw,140px);line-height:.92;letter-spacing:-.035em;max-width:1000px"><span lang="en">Evenings under the <em style="color:#E3CFA6">pergola</em></span><span lang="sr">Вечери под <em style="color:#E3CFA6">пергола</em></span></h2>
+    <p style="margin:0;max-width:460px;font-size:17px;line-height:1.55;color:rgba(244,241,234,.9)"><span lang="en">Warm cedar beams, soft LED light and a view across the red roofs to the Maleševo hills.</span><span lang="sr">Топли греди од кедар, меко LED светло и поглед преку црвените покриви кон Малешевските ридови.</span></p>
+  </div>
+</section>
+
+<section data-screen-label="Amenities" style="padding:clamp(100px,12vw,180px) clamp(20px,5vw,64px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:56px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px">
+      <h2 data-split="" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,6vw,92px);line-height:.95;letter-spacing:-.03em"><span lang="en">In every <em style="color:#0F4C6E">apartment</em></span><span lang="sr">Во секој <em style="color:#0F4C6E">апартман</em></span></h2>
+      <p style="margin:0;max-width:360px;font-size:16px;line-height:1.55;color:rgba(14,26,36,.7)"><span lang="en">Everything for a stay of one night or two weeks, included in the price.</span><span lang="sr">Сè за престој од една ноќ до две недели, вклучено во цената.</span></p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:12px;padding:12px;border-radius:24px;background:#EAE5DA;border:1px solid rgba(0,0,0,.08)">
+      <sc-for list="{{ amenities }}" as="a" hint-placeholder-count="10">
+        <div data-reveal="" style="display:flex;flex-direction:column;justify-content:space-between;gap:36px;min-height:150px;padding:22px;border-radius:16px;background:#F4F1EA;border:1px solid rgba(0,0,0,.06)">
+          <span style="width:34px;height:34px;border-radius:50%;border:1px solid #0F4C6E;display:flex;align-items:center;justify-content:center;font-size:12px;color:#0F4C6E">{{ a.n }}</span>
+          <span style="font-size:18px;font-weight:500;line-height:1.3">{{ a.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Reviews" style="padding:clamp(100px,12vw,160px) 0;background:#0C1820;color:#F4F1EA;overflow:hidden;display:flex;flex-direction:column;gap:56px">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 clamp(20px,5vw,64px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px">
+    <h2 data-split="" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,6vw,92px);line-height:.95;letter-spacing:-.03em"><span lang="en">Words from our <em style="color:#C2A273">guests</em></span><span lang="sr">Зборови од нашите <em style="color:#C2A273">гости</em></span></h2>
+    <span style="font-size:15px;color:rgba(244,241,234,.66)">9.2 · Booking.com</span>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div data-marquee="" style="display:flex;gap:16px;width:max-content">
+      <sc-for list="{{ row1 }}" as="r" hint-placeholder-count="6">
+        <figure style="margin:0;width:min(78vw,440px);padding:28px;border-radius:24px;background:rgba(244,241,234,.05);border:1px solid rgba(244,241,234,.1);display:flex;flex-direction:column;justify-content:space-between;gap:28px">
+          <blockquote style="margin:0;font-family:'Instrument Serif',serif;font-size:24px;line-height:1.25">“{{ r.q }}”</blockquote>
+          <figcaption style="font-size:14px;color:#C2A273">{{ r.who }}</figcaption>
+        </figure>
+      </sc-for>
+    </div>
+    <div data-marquee="rev" style="display:flex;gap:16px;width:max-content">
+      <sc-for list="{{ row2 }}" as="r" hint-placeholder-count="6">
+        <figure style="margin:0;width:min(78vw,440px);padding:28px;border-radius:24px;background:rgba(244,241,234,.05);border:1px solid rgba(244,241,234,.1);display:flex;flex-direction:column;justify-content:space-between;gap:28px">
+          <blockquote style="margin:0;font-family:'Instrument Serif',serif;font-size:24px;line-height:1.25">“{{ r.q }}”</blockquote>
+          <figcaption style="font-size:14px;color:#C2A273">{{ r.who }}</figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Teasers" style="padding:clamp(100px,12vw,160px) clamp(20px,5vw,64px)">
+  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px">
+    <a href="location.html" data-cursor="view" style="position:relative;display:block;height:clamp(420px,60vw,620px);border-radius:24px;overflow:hidden;color:#F4F1EA;background:#0C1820">
+      <img data-parallax="" src="uploads/581177168.jpg" alt="Square Luxury Apartments building at dusk" loading="lazy" style="position:absolute;left:0;top:-10%;width:100%;height:120%;object-fit:cover">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,24,32,0) 40%,rgba(12,24,32,.75))"></div>
+      <div style="position:absolute;left:28px;right:28px;bottom:28px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#E3CFA6"><span lang="en">Location</span><span lang="sr">Локација</span></span><h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,4vw,56px);line-height:1"><span lang="en">On the town <em>square</em></span><span lang="sr">На градскиот <em>плоштад</em></span></h3></div>
+        <span style="flex:0 0 auto;width:52px;height:52px;border-radius:50%;background:#F4F1EA;color:#0C1820;display:flex;align-items:center;justify-content:center;font-size:18px">→</span>
+      </div>
+    </a>
+    <a href="gallery.html" data-cursor="view" style="position:relative;display:block;height:clamp(420px,60vw,620px);border-radius:24px;overflow:hidden;color:#F4F1EA;background:#0C1820">
+      <img data-parallax="" src="uploads/451920768.jpg" alt="Studio with blue velvet sofa" loading="lazy" style="position:absolute;left:0;top:-10%;width:100%;height:120%;object-fit:cover">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,24,32,0) 40%,rgba(12,24,32,.75))"></div>
+      <div style="position:absolute;left:28px;right:28px;bottom:28px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#E3CFA6"><span lang="en">Gallery</span><span lang="sr">Галерија</span></span><h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,4vw,56px);line-height:1"><span lang="en">Thirty-two <em>frames</em></span><span lang="sr">Триесет и два <em>кадри</em></span></h3></div>
+        <span style="flex:0 0 auto;width:52px;height:52px;border-radius:50%;background:#F4F1EA;color:#0C1820;display:flex;align-items:center;justify-content:center;font-size:18px">→</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<dc-import name="Footer" hint-size="100%,900px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { ci: '', co: '', g: '2', lang: document.documentElement.dataset.lang || 'en' };
+  componentDidMount() {
+    this.onL = e => this.setState({ lang: e.detail });
+    addEventListener('sq-lang', this.onL);
+    const go = () => window.SQ ? SQ.scan() : setTimeout(go, 50); go();
+  }
+  componentWillUnmount() { removeEventListener('sq-lang', this.onL); }
+  renderVals() {
+    const sr = this.state.lang === 'sr', { ci, co, g } = this.state;
+    const d = new Date(), today = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    const S = [
+      ['uploads/462004016.jpg', 'Living room', 'Дневна соба', 'Marble feature walls, walnut floors and a sofa made for long evenings.', 'Мермерни ѕидови, подови од орев и софа за долги вечери.'],
+      ['uploads/581181971.jpg', 'Bedroom', 'Спална соба', 'Solid-wood beds, lit niches and blackout curtains for deep sleep.', 'Кревети од масивно дрво, осветлени ниши и завеси за длабок сон.'],
+      ['uploads/581181636.jpg', 'Kitchen & dining', 'Кујна и трпезарија', 'A fully equipped kitchen with stovetop, fridge, kettle and coffee maker.', 'Целосно опремена кујна со рингли, фрижидер, електричен чајник и апарат за кафе.'],
+      ['uploads/581181728.jpg', 'Bathroom', 'Бања', 'Walk-in shower, floor heating, hairdryer and complimentary toiletries.', 'Туш кабина, подно греење, фен и бесплатна козметика.'],
+      ['uploads/581185235.jpg', 'Rooftop terrace', 'Кровна тераса', 'Shared rooftop with lounge seating, greenery and views over Berovo.', 'Заедничка кровна тераса со гарнитура, зеленило и поглед кон Берово.']
+    ];
+    const spaces = S.map((s, i) => ({ n: '0' + (i + 1), img: s[0], title: sr ? s[2] : s[1], text: sr ? s[4] : s[3] }));
+    const A = [['Free Wi-Fi', 'Бесплатен Wi-Fi'], ['Free private parking', 'Бесплатен приватен паркинг'], ['Air conditioning & heating', 'Клима и греење'], ['Floor heating, even in the shower', 'Подно греење, дури и во тушот'], ['Fully equipped kitchen', 'Целосно опремена кујна'], ['Walk-in shower', 'Туш кабина'], ['Flat-screen satellite TV', 'ТВ со сателитски канали'], ['Soundproof units', 'Звучна изолација'], ['Rooftop terrace', 'Кровна тераса'], ['Towels, linen & toiletries', 'Крпи, постелнина и козметика']];
+    const amenities = A.map((a, i) => ({ n: String(i + 1).padStart(2, '0'), label: sr ? a[1] : a[0] }));
+    const R1 = [
+      { q: 'Excellent place. Best possible location. Few steps from the center and the bus station. Super clean, comfortable and homey.', who: 'Pane, North Macedonia' },
+      { q: 'Great location, great view, very clean, the hosts are very kind and helpful.', who: 'Booking.com guest' },
+      { q: 'Amazing location right in the centre of Berovo and tastefully designed.', who: 'Guest, July 2024' }
+    ];
+    const R2 = [
+      { q: 'Location is great, clean and spacious room, staff was very friendly, highly recommended.', who: 'Young couple' },
+      { q: 'The location is excellent, in the center of Berovo. All restaurants are nearby, you don’t need a vehicle.', who: 'Vesna, solo traveller' },
+      { q: 'Best part is the floor heating all over the place, including the shower.', who: 'Pane, North Macedonia' }
+    ];
+    return {
+      spaces, amenities, row1: [...R1, ...R1, ...R1, ...R1], row2: [...R2, ...R2, ...R2, ...R2],
+      today, ci, co, g, coMin: ci || today,
+      setCi: e => this.setState({ ci: e.target.value }),
+      setCo: e => this.setState({ co: e.target.value }),
+      setG: e => this.setState({ g: e.target.value }),
+      check: e => {
+        e.preventDefault();
+        const p = new URLSearchParams();
+        if (ci) p.set('checkin', ci); if (co) p.set('checkout', co); p.set('guests', g);
+        const url = 'book.html?' + p;
+        window.SQ ? SQ.go(url, sr ? 'Резервација' : 'Book your stay') : (location.href = url);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

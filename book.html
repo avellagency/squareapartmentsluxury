@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book your stay · Square Luxury Apartments Berovo</title>
+<script>document.documentElement.dataset.lang=localStorage.getItem('sq-lang-mk')||'sr'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="site.js"></script>
+<style>
+html,body{margin:0;background:#F4F1EA;color:#0E1A24;font-family:'Inter Tight',sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#0F4C6E;text-decoration:none}a:hover{color:#0C1820}
+html[data-lang="en"] body [lang="sr"],html[data-lang="sr"] body [lang="en"]{display:none !important}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto !important}
+::selection{background:#0F4C6E;color:#F4F1EA}
+input,select,textarea,button{font-family:inherit}
+@media (hover:hover) and (pointer:fine){body,a,button{cursor:none}}
+</style>
+</helmet>
+<dc-import name="Nav" current="book" hint-size="100%,1px"></dc-import>
+
+<section data-screen-label="Hero" style="position:relative;height:60svh;min-height:440px;overflow:hidden;background:#0C1820;color:#F4F1EA">
+  <img data-zoom="" src="uploads/581185235.jpg" alt="Rooftop terrace" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.15)">
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,24,32,.35),rgba(12,24,32,.7))"></div>
+  <div style="position:relative;height:100%;max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,64px) clamp(32px,4vw,56px);display:flex;flex-direction:column;justify-content:flex-end;gap:16px">
+    <span data-reveal="hero" style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#E3CFA6"><span lang="en">Direct booking · Best rate</span><span lang="sr">Директна резервација · Најдобра цена</span></span>
+    <h1 data-split="hero" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(60px,10vw,150px);line-height:.9;letter-spacing:-.04em"><span lang="en">Book your <em style="color:#E3CFA6">stay</em></span><span lang="sr">Резервирајте <em style="color:#E3CFA6">престој</em></span></h1>
+  </div>
+</section>
+
+<section data-screen-label="Booking" style="padding:clamp(48px,7vw,96px) clamp(16px,5vw,64px) clamp(80px,10vw,140px)">
+  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:{{ cols }};gap:clamp(20px,3vw,40px);align-items:start">
+    <div style="display:flex;flex-direction:column;gap:28px;min-width:0">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;justify-content:space-between;gap:8px">
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+            <span style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:{{ s.col }};transition:color .6s"><span style="width:28px;height:28px;border-radius:50%;border:1px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:12px">{{ s.n }}</span>{{ s.label }}</span>
+          </sc-for>
+        </div>
+        <div style="height:2px;border-radius:2px;background:rgba(0,0,0,.08);overflow:hidden"><div style="height:100%;width:{{ prog }}%;background:#0F4C6E;transition:width 1s cubic-bezier(.16,1,.3,1)"></div></div>
+      </div>
+
+      <div data-steppanel="" style="padding:clamp(16px,3vw,32px);border-radius:24px;background:#FBF9F4;border:1px solid rgba(0,0,0,.08)">
+        <sc-if value="{{ s1 }}" hint-placeholder-val="{{ true }}">
+          <!-- OVDE KASNIJE IDE PRAVI BOOKING (Smoobu) -->
+          <div style="display:flex;flex-direction:column;gap:28px">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+              <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(32px,3.4vw,44px);line-height:1"><span lang="en">Choose your <em style="color:#0F4C6E">dates</em></span><span lang="sr">Изберете <em style="color:#0F4C6E">датуми</em></span></h2>
+              <div style="display:flex;gap:6px">
+                <button onClick="{{ prevM }}" aria-label="Previous month" style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(0,0,0,.12);background:transparent;font-size:16px;opacity:{{ prevOp }}">←</button>
+                <button onClick="{{ nextM }}" aria-label="Next month" style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(0,0,0,.12);background:transparent;font-size:16px">→</button>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:{{ calCols }};gap:clamp(20px,3vw,40px)">
+              <sc-for list="{{ months }}" as="m" hint-placeholder-count="2">
+                <div style="display:flex;flex-direction:column;gap:12px">
+                  <span style="font-family:'Instrument Serif',serif;font-size:26px;text-transform:capitalize">{{ m.title }}</span>
+                  <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));row-gap:4px">
+                    <sc-for list="{{ wd }}" as="w" hint-placeholder-count="7"><span style="text-align:center;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(14,26,36,.5);padding:6px 0">{{ w }}</span></sc-for>
+                    <sc-for list="{{ m.days }}" as="d" hint-placeholder-count="35">
+                      <button onClick="{{ d.pick }}" disabled="{{ d.dis }}" aria-label="{{ d.k }}" style="aspect-ratio:1;min-height:40px;border:0;padding:0;visibility:{{ d.vis }};background:{{ d.bg }};color:{{ d.fg }};text-decoration:{{ d.deco }};border-radius:{{ d.rad }};font-size:15px;font-weight:{{ d.fw }};box-shadow:{{ d.ring }};transition:background .5s cubic-bezier(.16,1,.3,1),color .5s,border-radius .5s">{{ d.n }}</button>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:20px;font-size:13px;color:rgba(14,26,36,.65)">
+              <span style="display:flex;align-items:center;gap:8px"><span style="width:14px;height:14px;border-radius:50%;background:#0F4C6E"></span><span lang="en">Selected</span><span lang="sr">Избрано</span></span>
+              <span style="display:flex;align-items:center;gap:8px"><span style="text-decoration:line-through;color:rgba(14,26,36,.4)">12</span><span lang="en">Booked</span><span lang="sr">Зафатено</span></span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-top:24px;border-top:1px solid rgba(0,0,0,.08)">
+              <div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:500"><span lang="en">Guests</span><span lang="sr">Гости</span></span><span style="font-size:13px;color:rgba(14,26,36,.6)"><span lang="en">Up to 4 per apartment</span><span lang="sr">До 4 по апартман</span></span></div>
+              <div style="display:flex;align-items:center;gap:6px;padding:4px;border-radius:999px;border:1px solid rgba(0,0,0,.12)">
+                <button onClick="{{ gMinus }}" aria-label="Fewer guests" style="width:44px;height:44px;border-radius:50%;border:0;background:#EAE5DA;font-size:20px">−</button>
+                <span style="min-width:36px;text-align:center;font-family:'Instrument Serif',serif;font-size:28px">{{ guests }}</span>
+                <button onClick="{{ gPlus }}" aria-label="More guests" style="width:44px;height:44px;border-radius:50%;border:0;background:#EAE5DA;font-size:20px">+</button>
+              </div>
+            </div>
+            <p style="margin:0;min-height:22px;font-size:14px;color:{{ msgCol }}">{{ msg }}</p>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(32px,3.4vw,44px);line-height:1"><span lang="en">Your <em style="color:#0F4C6E">details</em></span><span lang="sr">Вашите <em style="color:#0F4C6E">податоци</em></span></h2>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+              <sc-for list="{{ fields }}" as="f" hint-placeholder-count="4">
+                <label style="display:flex;flex-direction:column;gap:6px">
+                  <span style="font-size:13px;font-weight:500">{{ f.label }}</span>
+                  <input type="{{ f.type }}" name="{{ f.k }}" autocomplete="{{ f.ac }}" value="{{ f.v }}" onChange="{{ f.set }}" onBlur="{{ f.blur }}" style="height:52px;padding:0 16px;border-radius:14px;border:1px solid {{ f.bc }};background:#F4F1EA;font-size:16px;color:#0E1A24;outline:none;transition:border-color .4s">
+                  <span style="min-height:16px;font-size:12px;color:#A4462F">{{ f.err }}</span>
+                </label>
+              </sc-for>
+              <label style="display:flex;flex-direction:column;gap:6px">
+                <span style="font-size:13px;font-weight:500">{{ arrLabel }}</span>
+                <select value="{{ arrival }}" onChange="{{ setArr }}" onBlur="{{ blurArr }}" style="height:52px;padding:0 14px;border-radius:14px;border:1px solid {{ arrBc }};background:#F4F1EA;font-size:16px;color:#0E1A24;outline:none">
+                  <option value="">—</option>
+                  <sc-for list="{{ times }}" as="t" hint-placeholder-count="16"><option value="{{ t }}">{{ t }}</option></sc-for>
+                </select>
+                <span style="min-height:16px;font-size:12px;color:#A4462F">{{ arrErr }}</span>
+              </label>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:13px;font-weight:500">{{ noteLabel }}</span>
+              <textarea rows="4" value="{{ note }}" onChange="{{ setNote }}" style="padding:14px 16px;border-radius:14px;border:1px solid rgba(0,0,0,.12);background:#F4F1EA;font-size:16px;color:#0E1A24;outline:none;resize:vertical"></textarea>
+            </label>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(32px,3.4vw,44px);line-height:1"><span lang="en">Review & <em style="color:#0F4C6E">confirm</em></span><span lang="sr">Преглед и <em style="color:#0F4C6E">потврда</em></span></h2>
+            <dl style="margin:0;display:flex;flex-direction:column">
+              <sc-for list="{{ review }}" as="r" hint-placeholder-count="8">
+                <div style="display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-top:1px solid rgba(0,0,0,.08);font-size:15px"><dt style="color:rgba(14,26,36,.6)">{{ r.k }}</dt><dd style="margin:0;text-align:right;font-weight:500;word-break:break-word">{{ r.v }}</dd></div>
+              </sc-for>
+            </dl>
+            <p style="margin:0;font-size:13px;line-height:1.5;color:rgba(14,26,36,.6)"><span lang="en">No payment now. We confirm availability personally within 24 hours.</span><span lang="sr">Без плаќање сега. Достапноста лично ја потврдуваме во рок од 24 часа.</span></p>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;padding:40px 0">
+            <svg width="96" height="96" viewBox="0 0 80 80" aria-hidden="true"><circle data-ck="" cx="40" cy="40" r="36" fill="none" stroke="#0F4C6E" stroke-width="2"></circle><path data-ck="" d="M25 41 L36 52 L56 30" fill="none" stroke="#0F4C6E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,4vw,56px);line-height:1"><span lang="en">Request <em style="color:#0F4C6E">received!</em></span><span lang="sr">Барањето е <em style="color:#0F4C6E">примено!</em></span></h2>
+            <p style="margin:0;max-width:380px;font-size:16px;line-height:1.55;color:rgba(14,26,36,.7)"><span lang="en">We'll confirm within 24h.</span><span lang="sr">Ќе потврдиме во рок од 24ч.</span></p>
+          </div>
+        </sc-if>
+      </div>
+
+      <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <button onClick="{{ back }}" style="height:52px;padding:0 22px;border-radius:999px;border:1px solid rgba(0,0,0,.12);background:transparent;font-size:15px;font-weight:500;visibility:{{ backVis }}">← <span lang="en">Back</span><span lang="sr">Назад</span></button>
+          <button onClick="{{ next }}" data-mag="" style="display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 30px;border-radius:999px;border:0;background:#0C1820;color:#F4F1EA;font-size:15px;font-weight:500;opacity:{{ nextOp }};transition:background .5s,opacity .5s" style-hover="background:#0F4C6E">{{ nextLabel }} <span data-arrow="">→</span></button>
+        </div>
+      </sc-if>
+    </div>
+
+    <aside style="position:{{ sumPos }};top:{{ sumTop }};left:12px;right:12px;bottom:{{ sumBottom }};z-index:150;display:{{ sumDisp }};max-height:{{ sumMax }};overflow:auto;padding:10px;border-radius:24px;background:#EAE5DA;border:1px solid rgba(0,0,0,.08);box-shadow:{{ sumShadow }}">
+      <div style="display:flex;flex-direction:column;gap:20px;padding:clamp(16px,2vw,24px);border-radius:18px;background:#F4F1EA;border:1px solid rgba(0,0,0,.06)">
+        <div style="display:flex;align-items:center;gap:14px">
+          <img src="uploads/581185233.jpg" alt="Rooftop terrace" loading="lazy" style="width:72px;height:72px;border-radius:14px;object-fit:cover">
+          <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#0F4C6E"><span lang="en">Your stay</span><span lang="sr">Вашиот престој</span></span><span style="font-family:'Instrument Serif',serif;font-size:24px;line-height:1.05">Square Luxury Apartments</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div style="padding:12px 14px;border-radius:14px;border:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(14,26,36,.55)"><span lang="en">Check-in</span><span lang="sr">Пристигнување</span></span><span style="font-weight:500">{{ ciTxt }}</span></div>
+          <div style="padding:12px 14px;border-radius:14px;border:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(14,26,36,.55)"><span lang="en">Check-out</span><span lang="sr">Заминување</span></span><span style="font-weight:500">{{ coTxt }}</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;font-size:15px">
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid rgba(0,0,0,.08)"><span>{{ nightLine }}</span><span>€{{ nightsCost }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid rgba(0,0,0,.08)"><span><span lang="en">Cleaning fee</span><span lang="sr">Чистење</span></span><span>€{{ fee }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid rgba(0,0,0,.08)"><span><span lang="en">Guests</span><span lang="sr">Гости</span></span><span>{{ guests }}</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 0;border-top:1px solid rgba(14,26,36,.9)"><span style="font-weight:600">Total</span><span style="font-family:'Instrument Serif',serif;font-size:44px;line-height:1">€{{ shown }}</span></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:12px">
+          <sc-for list="{{ perks }}" as="p" hint-placeholder-count="4"><span style="padding:8px 12px;border-radius:999px;background:#EAE5DA;color:#0E1A24">{{ p }}</span></sc-for>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section data-screen-label="Talk" style="padding:0 clamp(20px,5vw,64px) clamp(100px,12vw,160px)">
+  <div style="max-width:1280px;margin:0 auto;padding:clamp(28px,4vw,56px);border-radius:24px;background:#0F4C6E;color:#F4F1EA;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h2 data-split="" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,5vw,72px);line-height:.95;letter-spacing:-.03em"><span lang="en">Prefer to <em style="color:#E3CFA6">talk?</em></span><span lang="sr">Повеќе сакате <em style="color:#E3CFA6">разговор?</em></span></h2>
+      <span style="font-size:16px;color:rgba(244,241,234,.8)">+389 70 583 100</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px">
+      <a href="https://wa.me/38970583100" target="_blank" data-mag="" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 28px;border-radius:999px;background:#F4F1EA;color:#0C1820;font-weight:500" style-hover="background:#E3CFA6;color:#0C1820">WhatsApp <span data-arrow="">↗</span></a>
+      <a href="viber://chat?number=%2B38970583100" data-mag="" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 28px;border-radius:999px;border:1px solid rgba(244,241,234,.45);color:#F4F1EA;font-weight:500" style-hover="background:rgba(244,241,234,.12);color:#F4F1EA">Viber <span data-arrow="">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="Footer" hint-size="100%,900px"></dc-import>
+
+<sc-if value="{{ mobileBar }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;left:12px;right:12px;bottom:12px;z-index:160;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 20px;border-radius:999px;background:rgba(12,24,32,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#F4F1EA;box-shadow:0 12px 40px rgba(0,0,0,.25)">
+    <button onClick="{{ toggleSum }}" style="display:flex;flex-direction:column;align-items:flex-start;gap:2px;border:0;background:transparent;color:#F4F1EA;padding:0;min-height:44px;justify-content:center"><span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#E3CFA6">Total {{ sumArrow }}</span><span style="font-family:'Instrument Serif',serif;font-size:28px;line-height:1">€{{ shown }}</span></button>
+    <button onClick="{{ next }}" style="height:48px;padding:0 24px;border-radius:999px;border:0;background:#F4F1EA;color:#0C1820;font-size:15px;font-weight:500;opacity:{{ nextOp }}">{{ nextLabel }} →</button>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  // ===== CENE I PODEŠAVANJA – menjaj ovde =====
+  PRICE_PER_NIGHT = 55;   // € po noći
+  CLEANING_FEE = 10;      // € jednokratno
+  MIN_NIGHTS = 2;
+  MAX_GUESTS = 4;
+  BOOKED_DATES = ['2026-10-30', '2026-10-31', '2026-11-06', '2026-11-07', '2026-11-08', '2026-11-20', '2026-11-21', '2026-12-24', '2026-12-25', '2026-12-31', '2027-01-01'];
+  // ============================================
+
+  pad = n => String(n).padStart(2, '0');
+  K = (y, m, d) => y + '-' + this.pad(m + 1) + '-' + this.pad(d);
+  P = k => { const [y, m, d] = k.split('-').map(Number); return new Date(y, m - 1, d); };
+  diff = (a, b) => Math.round((this.P(b) - this.P(a)) / 864e5);
+
+  constructor(p) {
+    super(p);
+    const n = new Date(); this.today = this.K(n.getFullYear(), n.getMonth(), n.getDate());
+    this.booked = new Set(this.BOOKED_DATES);
+    const q = new URLSearchParams(location.search), re = /^\d{4}-\d{2}-\d{2}$/;
+    let ci = q.get('checkin') || '', co = q.get('checkout') || '', g = parseInt(q.get('guests')) || 2;
+    if (!re.test(ci) || ci < this.today || this.booked.has(ci)) ci = '';
+    if (!ci || !re.test(co) || co <= ci || this.blocked(ci, co)) co = '';
+    const base = ci ? this.P(ci) : n;
+    this.state = {
+      step: 1, done: false, ci, co, g: Math.min(this.MAX_GUESTS, Math.max(1, g)), y: base.getFullYear(), m: base.getMonth(),
+      form: { name: '', email: '', phone: '', country: '', arrival: '', note: '' }, touched: {}, shown: 0, sumOpen: false,
+      mobile: innerWidth < 960, lang: document.documentElement.dataset.lang || 'en'
+    };
+    this.o = { v: 0 };
+  }
+  blocked(a, b) { for (const d of this.booked) if (d >= a && d < b) return true; return false; }
+  componentDidMount() {
+    this.onR = () => this.setState({ mobile: innerWidth < 960 });
+    this.onL = e => this.setState({ lang: e.detail });
+    addEventListener('resize', this.onR); addEventListener('sq-lang', this.onL);
+    this.tweenTotal();
+    const go = () => window.SQ ? SQ.scan() : setTimeout(go, 50); go();
+  }
+  componentWillUnmount() { removeEventListener('resize', this.onR); removeEventListener('sq-lang', this.onL); }
+  calc() { const { ci, co } = this.state, nights = ci && co ? this.diff(ci, co) : 0; return { nights, total: nights ? nights * this.PRICE_PER_NIGHT + this.CLEANING_FEE : 0 }; }
+  tweenTotal() {
+    const t = this.calc().total; if (t === this.lastT) return; this.lastT = t;
+    if (!window.gsap) { this.setState({ shown: t }); return; }
+    gsap.to(this.o, { v: t, duration: .9, ease: 'power3.out', overwrite: true, onUpdate: () => this.setState({ shown: Math.round(this.o.v) }) });
+  }
+  componentDidUpdate(_, p) {
+    this.tweenTotal();
+    if (!window.gsap) return;
+    if (p.step !== this.state.step || p.done !== this.state.done) {
+      const dir = this.state.step >= p.step ? 1 : -1;
+      gsap.fromTo('[data-steppanel]', { opacity: 0, x: 40 * dir }, { opacity: 1, x: 0, duration: .9, ease: 'power3.out' });
+      const el = document.querySelector('[data-steppanel]');
+      if (el && window.SQ && SQ.lenis) SQ.lenis.scrollTo(el, { offset: -140 }); else if (el) window.scrollTo({ top: el.getBoundingClientRect().top + scrollY - 140, behavior: 'smooth' });
+    }
+    if (!p.done && this.state.done) {
+      document.querySelectorAll('[data-ck]').forEach((n, i) => { const L = n.getTotalLength(); gsap.fromTo(n, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: 1.2, delay: .2 + i * .5, ease: 'expo.out' }); });
+    }
+  }
+  errs() {
+    const f = this.state.form, sr = this.state.lang === 'sr';
+    return {
+      name: f.name.trim().length >= 2 ? '' : (sr ? 'Внесете име и презиме' : 'Please enter your full name'),
+      email: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim()) ? '' : (sr ? 'Внесете валиден email' : 'Please enter a valid email'),
+      phone: f.phone.replace(/\D/g, '').length >= 7 ? '' : (sr ? 'Внесете телефонски број' : 'Please enter a phone number'),
+      country: f.country.trim().length >= 2 ? '' : (sr ? 'Внесете држава' : 'Please enter your country'),
+      arrival: f.arrival ? '' : (sr ? 'Изберете време на пристигнување' : 'Please choose an arrival time')
+    };
+  }
+  pick(k) {
+    const { ci, co } = this.state;
+    if (!ci || co || k <= ci || this.blocked(ci, k)) this.setState({ ci: k, co: '' });
+    else this.setState({ co: k });
+  }
+  next() {
+    const s = this.state;
+    if (s.done) return;
+    if (s.step === 1) { if (this.calc().nights >= this.MIN_NIGHTS) this.setState({ step: 2, sumOpen: false }); return; }
+    if (s.step === 2) {
+      const e = this.errs();
+      if (Object.values(e).some(Boolean)) { this.setState({ touched: { name: 1, email: 1, phone: 1, country: 1, arrival: 1 } }); return; }
+      this.setState({ step: 3, sumOpen: false }); return;
+    }
+    this.setState({ done: true, sumOpen: false });
+  }
+  setF(k, v) { this.setState(s => ({ form: { ...s.form, [k]: v } })); }
+  touch(k) { this.setState(s => ({ touched: { ...s.touched, [k]: 1 } })); }
+  renderVals() {
+    const s = this.state, sr = s.lang === 'sr', loc = sr ? 'mk' : 'en-GB', mob = s.mobile;
+    const { nights, total } = this.calc();
+    const fmt = k => k ? this.P(k).toLocaleDateString(loc, { weekday: 'short', day: 'numeric', month: 'short' }) : '—';
+    const now = new Date(), atStart = s.y === now.getFullYear() && s.m === now.getMonth();
+    const months = (mob ? [0] : [0, 1]).map(off => {
+      const first = new Date(s.y, s.m + off, 1), y = first.getFullYear(), m = first.getMonth();
+      const lead = (first.getDay() + 6) % 7, len = new Date(y, m + 1, 0).getDate(), days = [];
+      for (let i = 0; i < lead; i++) days.push({ vis: 'hidden', dis: true, n: '', k: '', bg: 'transparent', fg: 'transparent', deco: 'none', rad: '0', fw: 400, ring: 'none', pick: () => {} });
+      for (let d = 1; d <= len; d++) {
+        const k = this.K(y, m, d), past = k < this.today, bk = this.booked.has(k), dis = past || bk;
+        const st = k === s.ci, en = k === s.co, inR = s.ci && s.co && k > s.ci && k < s.co, end = st || en;
+        days.push({
+          vis: 'visible', dis, n: d, k,
+          bg: end ? '#0F4C6E' : inR ? 'rgba(15,76,110,.13)' : 'transparent',
+          fg: end ? '#F4F1EA' : dis ? 'rgba(14,26,36,.28)' : '#0E1A24',
+          deco: bk ? 'line-through' : 'none', fw: end ? 600 : 400,
+          rad: st && s.co ? '999px 0 0 999px' : en ? '0 999px 999px 0' : inR ? '0' : '999px',
+          ring: k === this.today && !end ? 'inset 0 0 0 1px #C2A273' : 'none',
+          pick: () => !dis && this.pick(k)
+        });
+      }
+      return { title: first.toLocaleDateString(loc, { month: 'long', year: 'numeric' }), days };
+    });
+    let msg = '', msgCol = 'rgba(14,26,36,.6)';
+    if (!s.ci) msg = sr ? 'Изберете датум на пристигнување.' : 'Select your check-in date.';
+    else if (!s.co) msg = sr ? 'Сега изберете датум на заминување.' : 'Now select your check-out date.';
+    else if (nights < this.MIN_NIGHTS) { msg = sr ? `Минимален престој е ${this.MIN_NIGHTS} ноќи.` : `Minimum stay is ${this.MIN_NIGHTS} nights.`; msgCol = '#A4462F'; }
+    else msg = sr ? `${nights} ноќи избрани.` : `${nights} nights selected.`;
+    const e = this.errs(), t = s.touched, f = s.form;
+    const bc = k => t[k] ? (e[k] ? '#A4462F' : '#0F4C6E') : 'rgba(0,0,0,.12)';
+    const FL = [['name', 'text', 'name', 'Full name', 'Име и презиме'], ['email', 'email', 'email', 'Email', 'Email'], ['phone', 'tel', 'tel', 'Phone / WhatsApp', 'Телефон / WhatsApp'], ['country', 'text', 'country-name', 'Country', 'Држава']];
+    const fields = FL.map(([k, type, ac, en, srl]) => ({ k, type, ac, label: sr ? srl : en, v: f[k], bc: bc(k), err: t[k] ? e[k] : '', set: ev => this.setF(k, ev.target.value), blur: () => this.touch(k) }));
+    const times = []; for (let h = 15; h <= 22; h++) { times.push(h + ':00'); if (h < 23) times.push(h + ':30'); }
+    const canNext = s.step === 1 ? nights >= this.MIN_NIGHTS : s.step === 2 ? !Object.values(e).some(Boolean) : true;
+    const nl = n => sr ? (n === 1 ? 'ноќ' : 'ноќи') : (n === 1 ? 'night' : 'nights');
+    const review = [
+      [sr ? 'Пристигнување' : 'Check-in', fmt(s.ci) + ' · ' + (f.arrival || '15:00')], [sr ? 'Заминување' : 'Check-out', fmt(s.co) + ' · 11:00'],
+      [sr ? 'Ноќи' : 'Nights', nights], [sr ? 'Гости' : 'Guests', s.g], [sr ? 'Име' : 'Name', f.name], ['Email', f.email],
+      [sr ? 'Телефон' : 'Phone', f.phone], [sr ? 'Држава' : 'Country', f.country], [sr ? 'Забелешка' : 'Note', f.note || '—'], ['Total', '€' + total]
+    ].map(([k, v]) => ({ k, v }));
+    const SL = sr ? ['Датуми', 'Податоци', 'Потврда'] : ['Dates', 'Details', 'Confirm'];
+    const showSum = !mob || s.sumOpen;
+    return {
+      steps: SL.map((l, i) => ({ n: i + 1, label: l, col: i + 1 <= s.step ? '#0F4C6E' : 'rgba(14,26,36,.4)' })),
+      prog: s.done ? 100 : Math.round((s.step - 1) / 3 * 100 + 100 / 3),
+      s1: s.step === 1 && !s.done, s2: s.step === 2 && !s.done, s3: s.step === 3 && !s.done, done: s.done, showNav: !s.done,
+      cols: mob ? 'minmax(0,1fr)' : 'minmax(0,7fr) minmax(0,4fr)', calCols: mob ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))',
+      months, wd: sr ? ['По', 'Вт', 'Ср', 'Че', 'Пе', 'Са', 'Не'] : ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+      prevOp: atStart ? .3 : 1,
+      prevM: () => !atStart && this.setState(x => { const d = new Date(x.y, x.m - 1, 1); return { y: d.getFullYear(), m: d.getMonth() }; }),
+      nextM: () => this.setState(x => { const d = new Date(x.y, x.m + 1, 1); return { y: d.getFullYear(), m: d.getMonth() }; }),
+      guests: s.g, gMinus: () => this.setState(x => ({ g: Math.max(1, x.g - 1) })), gPlus: () => this.setState(x => ({ g: Math.min(this.MAX_GUESTS, x.g + 1) })),
+      msg, msgCol, fields, times,
+      arrLabel: sr ? 'Време на пристигнување' : 'Arrival time', arrival: f.arrival, arrBc: bc('arrival'), arrErr: t.arrival ? e.arrival : '',
+      setArr: ev => this.setF('arrival', ev.target.value), blurArr: () => this.touch('arrival'),
+      noteLabel: sr ? 'Забелешка (опционално)' : 'Note (optional)', note: f.note, setNote: ev => this.setF('note', ev.target.value),
+      review, back: () => this.setState(x => ({ step: Math.max(1, x.step - 1) })), backVis: s.step > 1 ? 'visible' : 'hidden',
+      next: () => this.next(), nextOp: canNext ? 1 : .4,
+      nextLabel: s.step === 3 ? (sr ? 'Испрати барање' : 'Request booking') : (sr ? 'Продолжи' : 'Continue'),
+      ciTxt: fmt(s.ci), coTxt: fmt(s.co), nightLine: `€${this.PRICE_PER_NIGHT} × ${nights} ${nl(nights)}`, nightsCost: nights * this.PRICE_PER_NIGHT,
+      fee: nights ? this.CLEANING_FEE : 0, shown: s.shown,
+      perks: sr ? ['Бесплатен паркинг', 'Wi-Fi', 'Кровна тераса', 'Пријавување од 15:00'] : ['Free parking', 'Wi-Fi', 'Rooftop terrace', 'Check-in from 15:00'],
+      sumPos: mob ? 'fixed' : 'sticky', sumTop: mob ? 'auto' : '110px', sumBottom: mob ? '84px' : 'auto', sumDisp: showSum ? 'block' : 'none',
+      sumMax: mob ? '70svh' : 'none', sumShadow: mob ? '0 20px 60px rgba(0,0,0,.25)' : 'none',
+      mobileBar: mob && !s.done, toggleSum: () => this.setState(x => ({ sumOpen: !x.sumOpen })), sumArrow: s.sumOpen ? '↓' : '↑'
+    };
+  }
+}
+</script>
+</body>
+</html>

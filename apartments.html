@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Apartments · Square Luxury Apartments Berovo</title>
+<script>document.documentElement.dataset.lang=localStorage.getItem('sq-lang-mk')||'sr'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="site.js"></script>
+<style>
+html,body{margin:0;background:#F4F1EA;color:#0E1A24;font-family:'Inter Tight',sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#0F4C6E;text-decoration:none}a:hover{color:#0C1820}
+html[data-lang="en"] body [lang="sr"],html[data-lang="sr"] body [lang="en"]{display:none !important}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto !important}
+::selection{background:#0F4C6E;color:#F4F1EA}
+@media (hover:hover) and (pointer:fine){body,a,button{cursor:none}}
+</style>
+</helmet>
+<dc-import name="Nav" current="apartments" hint-size="100%,1px"></dc-import>
+
+<section data-screen-label="Hero" style="position:relative;height:88svh;min-height:560px;overflow:hidden;background:#0C1820;color:#F4F1EA">
+  <img data-zoom="" src="uploads/462004232.jpg" alt="Studio apartment with ring chandelier" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.15)">
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,24,32,.3),rgba(12,24,32,.1) 40%,rgba(12,24,32,.72))"></div>
+  <div style="position:relative;height:100%;max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,64px) clamp(36px,5vw,64px);display:flex;flex-direction:column;justify-content:flex-end;gap:20px">
+    <span data-reveal="hero" style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#E3CFA6"><span lang="en">Studios & one-bedroom apartments</span><span lang="sr">Студија и еднособни апартмани</span></span>
+    <h1 data-split="hero" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(64px,12vw,180px);line-height:.9;letter-spacing:-.04em"><span lang="en">The <em style="color:#E3CFA6">Apartments</em></span><span lang="sr"><em style="color:#E3CFA6">Апартмани</em></span></h1>
+    <p data-reveal="hero" data-delay=".3" style="margin:0;max-width:520px;font-size:18px;line-height:1.55;color:rgba(244,241,234,.88)"><span lang="en">Each unit is new, soundproofed and finished by hand – marble, walnut, velvet and soft, layered light.</span><span lang="sr">Секоја единица е нова, звучно изолирана и рачно завршена – мермер, орев, кадифе и меко, слоевито светло.</span></p>
+  </div>
+</section>
+
+<section data-screen-label="Rooms" style="padding:clamp(80px,10vw,140px) clamp(20px,5vw,64px)">
+  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:{{ cols }};gap:clamp(32px,5vw,80px);align-items:start">
+    <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+      <div style="position:sticky;top:120px;display:flex;flex-direction:column;gap:40px">
+        <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;border-top:1px solid rgba(0,0,0,.08)">
+          <sc-for list="{{ rooms }}" as="r" hint-placeholder-count="6">
+            <li style="display:flex;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.08);color:{{ r.col }};transition:color .6s">
+              <span style="font-size:12px;width:24px">{{ r.n }}</span>
+              <span style="font-family:'Instrument Serif',serif;font-size:clamp(26px,2.4vw,36px);line-height:1.1;font-style:{{ r.fs }}">{{ r.title }}</span>
+            </li>
+          </sc-for>
+        </ol>
+        <p style="margin:0;min-height:96px;font-size:17px;line-height:1.6;color:rgba(14,26,36,.75);max-width:420px">{{ activeText }}</p>
+      </div>
+    </sc-if>
+    <div style="display:flex;flex-direction:column;gap:clamp(24px,4vw,56px)">
+      <sc-for list="{{ rooms }}" as="r" hint-placeholder-count="6">
+        <div data-room="{{ $index }}" style="display:flex;flex-direction:column;gap:16px">
+          <div data-cursor="view" style="position:relative;height:clamp(380px,70svh,720px);border-radius:24px;overflow:hidden;background:#0C1820">
+            <img data-parallax="" src="{{ r.img }}" alt="{{ r.title }}" loading="lazy" style="position:absolute;left:0;top:-10%;width:100%;height:120%;object-fit:cover">
+          </div>
+          <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-family:'Instrument Serif',serif;font-size:32px;line-height:1">{{ r.n }} · {{ r.title }}</span>
+              <p style="margin:0;font-size:16px;line-height:1.55;color:rgba(14,26,36,.75)">{{ r.text }}</p>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Overview" style="padding:0 clamp(20px,5vw,64px) clamp(80px,10vw,140px)">
+  <div style="max-width:1280px;margin:0 auto;padding:12px;border-radius:24px;background:#EAE5DA;border:1px solid rgba(0,0,0,.08);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:12px">
+    <div style="padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;justify-content:space-between;gap:32px">
+      <span style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#0F4C6E"><span lang="en">Floor overview</span><span lang="sr">Преглед на единиците</span></span>
+      <h2 data-split="" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5vw,76px);line-height:.95;letter-spacing:-.03em"><span lang="en">Two ways to <em style="color:#0F4C6E">stay</em></span><span lang="sr">Два начина на <em style="color:#0F4C6E">престој</em></span></h2>
+    </div>
+    <div style="padding:clamp(24px,3vw,36px);border-radius:16px;background:#F4F1EA;border:1px solid rgba(0,0,0,.06);display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:32px;line-height:1.05"><span lang="en">One-Bedroom Apartment</span><span lang="sr">Еднособен апартман</span></h3><span style="font-family:'Instrument Serif',serif;font-size:28px;color:#9A7F52">30 m²</span></div>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;font-size:15px">
+        <li style="padding:10px 0;border-top:1px solid rgba(0,0,0,.08)"><span lang="en">1 double bed + 1 sofa bed</span><span lang="sr">1 брачен кревет + 1 тросед на расклопување</span></li>
+        <li style="padding:10px 0;border-top:1px solid rgba(0,0,0,.08)"><span lang="en">Bathroom with walk-in shower & hairdryer</span><span lang="sr">Бања со туш кабина и фен</span></li>
+        <li style="padding:10px 0;border-top:1px solid rgba(0,0,0,.08)"><span lang="en">Terrace with city views</span><span lang="sr">Тераса со поглед кон градот</span></li>
+        <li style="padding:10px 0;border-top:1px solid rgba(0,0,0,.08)"><span lang="en">Air conditioning, soundproof walls, flat-screen TV</span><span lang="sr">Клима, звучна изолација, рамен ТВ</span></li>
+      </ul>
+    </div>
+    <div style="padding:clamp(24px,3vw,36px);border-radius:16px;background:#0C1820;color:#F4F1EA;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:32px;line-height:1.05"><span lang="en">Deluxe One-Bedroom, City View</span><span lang="sr">Делукс еднособен, поглед кон градот</span></h3><span style="font-family:'Instrument Serif',serif;font-size:28px;color:#C2A273">Deluxe</span></div>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;font-size:15px">
+        <li style="padding:10px 0;border-top:1px solid rgba(244,241,234,.12)"><span lang="en">Separate bedroom and living room, private entrance</span><span lang="sr">Одвоена спална и дневна соба, приватен влез</span></li>
+        <li style="padding:10px 0;border-top:1px solid rgba(244,241,234,.12)"><span lang="en">Spa bath</span><span lang="sr">Спа када</span></li>
+        <li style="padding:10px 0;border-top:1px solid rgba(244,241,234,.12)"><span lang="en">Kitchen: stovetop, fridge, kitchenware, coffee maker</span><span lang="sr">Кујна: рингли, фрижидер, садови, апарат за кафе</span></li>
+        <li style="padding:10px 0;border-top:1px solid rgba(244,241,234,.12)"><span lang="en">Mountain-view terrace with barbecue</span><span lang="sr">Тераса со поглед кон планината и скара</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="House rules" style="padding:0 clamp(20px,5vw,64px) clamp(100px,12vw,160px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:40px">
+    <h2 data-split="" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,5vw,72px);line-height:.95;letter-spacing:-.03em"><span lang="en">House <em style="color:#0F4C6E">rules</em></span><span lang="sr">Куќен <em style="color:#0F4C6E">ред</em></span></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-top:1px solid rgba(0,0,0,.08)">
+      <sc-for list="{{ rules }}" as="r" hint-placeholder-count="5">
+        <div data-reveal="" style="padding:24px 20px 24px 0;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid rgba(0,0,0,.08)">
+          <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(14,26,36,.55)">{{ r.k }}</span>
+          <span style="font-family:'Instrument Serif',serif;font-size:30px;line-height:1.1">{{ r.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<dc-import name="Footer" hint-size="100%,900px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { active: 0, mobile: innerWidth < 900, lang: document.documentElement.dataset.lang || 'en' };
+  componentDidMount() {
+    this.onR = () => this.setState({ mobile: innerWidth < 900 });
+    this.onL = e => this.setState({ lang: e.detail });
+    addEventListener('resize', this.onR); addEventListener('sq-lang', this.onL);
+    this.io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && this.setState({ active: +e.target.dataset.room })), { rootMargin: '-45% 0px -45% 0px' });
+    const watch = () => { const n = document.querySelectorAll('[data-room]'); n.length ? n.forEach(x => this.io.observe(x)) : setTimeout(watch, 100); };
+    watch();
+    const go = () => window.SQ ? SQ.scan() : setTimeout(go, 50); go();
+  }
+  componentWillUnmount() { removeEventListener('resize', this.onR); removeEventListener('sq-lang', this.onL); this.io && this.io.disconnect(); }
+  renderVals() {
+    const sr = this.state.lang === 'sr', a = this.state.active;
+    const R = [
+      ['uploads/462004016.jpg', 'Living & lounge', 'Дневен престој', 'Marble feature walls, a walnut-slat divider and a deep sofa facing the screen – the room you come back to after a day in the mountains.', 'Мермерни ѕидови, преграда од орев и длабока софа – собата во која се враќате по ден во планините.'],
+      ['uploads/581181636.jpg', 'Kitchen & dining', 'Кујна и трпезарија', 'White cabinetry against black marble, an induction stovetop, fridge and coffee maker, with a table for four under the lit niches.', 'Бели елементи со црн мермер, индукциска плоча, фрижидер и апарат за кафе, со маса за четворица под осветлените ниши.'],
+      ['uploads/581181971.jpg', 'Bedroom', 'Спална соба', 'A solid-wood bed with crisp white linen, exposed beams and blackout curtains. Quiet, soundproofed and properly dark.', 'Кревет од масивно дрво, бела постелнина, изложени греди и завеси за затемнување. Тивко и звучно изолирано.'],
+      ['uploads/451920768.jpg', 'Studio suites', 'Студио апартмани', 'Open-plan studios in deep indigo velvet and walnut, with the bed, lounge and work desk sharing one generous room.', 'Отворени студија во темносино кадифе и орев – кревет, салон и работна маса во една пространа соба.'],
+      ['uploads/581181728.jpg', 'Bathroom', 'Бања', 'Walk-in shower, stone-grey tiles, floor heating, a hairdryer and complimentary toiletries.', 'Туш кабина, сиви плочки, подно греење, фен и бесплатна козметика.'],
+      ['uploads/581185233.jpg', 'Rooftop terrace', 'Кровна тераса', 'A cedar pergola strung with warm light, lounge chairs and a view across the rooftops of Berovo to the hills.', 'Пергола од кедар со топло светло, гарнитури и поглед преку покривите на Берово кон ридовите.']
+    ];
+    const rooms = R.map((r, i) => ({ n: '0' + (i + 1), img: r[0], title: sr ? r[2] : r[1], text: sr ? r[4] : r[3], col: i === a ? '#0F4C6E' : 'rgba(14,26,36,.35)', fs: i === a ? 'italic' : 'normal' }));
+    const rules = sr
+      ? [{ k: 'Пријавување', v: 'од 15:00' }, { k: 'Одјавување', v: 'до 11:00' }, { k: 'Пушење', v: 'Забрането' }, { k: 'Паркинг', v: 'Бесплатен' }, { k: 'Откажување', v: 'Бесплатно за повеќето цени' }]
+      : [{ k: 'Check-in', v: 'From 15:00' }, { k: 'Check-out', v: 'Until 11:00' }, { k: 'Smoking', v: 'Non-smoking' }, { k: 'Parking', v: 'Free, on site' }, { k: 'Cancellation', v: 'Free on most rates' }];
+    return { rooms, rules, activeText: rooms[a].text, desktop: !this.state.mobile, mobile: this.state.mobile, cols: this.state.mobile ? 'minmax(0,1fr)' : 'minmax(0,5fr) minmax(0,7fr)' };
+  }
+}
+</script>
+</body>
+</html>

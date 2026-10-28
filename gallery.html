@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery · Square Luxury Apartments Berovo</title>
+<script>document.documentElement.dataset.lang=localStorage.getItem('sq-lang-mk')||'sr'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="site.js"></script>
+<style>
+html,body{margin:0;background:#F4F1EA;color:#0E1A24;font-family:'Inter Tight',sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#0F4C6E;text-decoration:none}a:hover{color:#0C1820}
+html[data-lang="en"] body [lang="sr"],html[data-lang="sr"] body [lang="en"]{display:none !important}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto !important}
+::selection{background:#0F4C6E;color:#F4F1EA}
+@media (hover:hover) and (pointer:fine){body,a,button{cursor:none}}
+</style>
+</helmet>
+<dc-import name="Nav" current="gallery" hint-size="100%,1px"></dc-import>
+
+<section data-screen-label="Gallery" style="padding:clamp(140px,16vw,200px) clamp(20px,5vw,64px) clamp(100px,12vw,160px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:48px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:28px">
+      <h1 data-split="hero" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(64px,11vw,164px);line-height:.9;letter-spacing:-.04em"><span lang="en">The <em style="color:#0F4C6E">Gallery</em></span><span lang="sr"><em style="color:#0F4C6E">Галерија</em></span></h1>
+      <div data-reveal="hero" style="display:flex;flex-wrap:wrap;gap:6px;padding:6px;border-radius:999px;background:#EAE5DA;border:1px solid rgba(0,0,0,.08)">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+          <button onClick="{{ f.pick }}" style="height:44px;padding:0 20px;border-radius:999px;border:0;background:{{ f.bg }};color:{{ f.fg }};font-size:14px;font-weight:500;transition:background .5s,color .5s">{{ f.label }} <span style="opacity:.55;font-size:12px">{{ f.count }}</span></button>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,{{ minCol }}),1fr));grid-auto-rows:{{ rowH }};grid-auto-flow:dense;gap:14px">
+      <sc-for list="{{ items }}" as="i" hint-placeholder-count="12">
+        <button data-gi="{{ i.id }}" data-clipin="" data-cursor="view" onClick="{{ i.open }}" aria-label="{{ i.alt }}" style="position:relative;display:{{ i.disp }};grid-row:span {{ i.rs }};grid-column:span {{ i.cs }};padding:0;border:0;border-radius:20px;overflow:hidden;background:#D9D2C3">
+          <img data-parallax="" src="{{ i.src }}" alt="{{ i.alt }}" loading="lazy" style="position:absolute;left:0;top:-8%;width:100%;height:116%;object-fit:cover">
+        </button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+  <div data-lb="" onTouchStart="{{ ts }}" onTouchEnd="{{ te }}" style="position:fixed;inset:0;z-index:300;background:rgba(12,24,32,.96);color:#F4F1EA;display:flex;flex-direction:column;padding:20px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:16px">
+      <span style="font-family:'Instrument Serif',serif;font-size:28px;letter-spacing:.02em">{{ counter }}</span>
+      <button onClick="{{ close }}" aria-label="Close" style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(244,241,234,.3);background:transparent;color:#F4F1EA;font-size:22px">×</button>
+    </div>
+    <div style="flex:1;min-height:0;display:flex;align-items:center;justify-content:center;gap:16px;padding:16px 0">
+      <button onClick="{{ prev }}" aria-label="Previous" style="flex:0 0 auto;width:52px;height:52px;border-radius:50%;border:1px solid rgba(244,241,234,.3);background:transparent;color:#F4F1EA;font-size:20px">←</button>
+      <img data-lbimg="" src="{{ lbSrc }}" alt="{{ lbAlt }}" style="flex:1;min-width:0;max-height:100%;width:100%;height:100%;object-fit:contain;border-radius:16px">
+      <button onClick="{{ next }}" aria-label="Next" style="flex:0 0 auto;width:52px;height:52px;border-radius:50%;border:1px solid rgba(244,241,234,.3);background:transparent;color:#F4F1EA;font-size:20px">→</button>
+    </div>
+    <span style="text-align:center;font-size:14px;color:rgba(244,241,234,.66)">{{ lbAlt }}</span>
+  </div>
+</sc-if>
+
+<dc-import name="Footer" hint-size="100%,900px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { f: 'all', lb: -1, mobile: innerWidth < 700, lang: document.documentElement.dataset.lang || 'en' };
+  IMG = [
+    ['hero-facade.png', 'x', 'w', 'Facade and rooftop at twilight'], ['451920768.jpg', 'i', 'w', 'Indigo studio with velvet sofa'], ['462004016.jpg', 'i', '', 'Living room with marble wall'],
+    ['581181761.jpg', 't', 't', 'Pergola terrace'], ['451920760.jpg', 'i', '', 'Bedroom with marble feature wall'], ['581181971.jpg', 'i', '', 'Bedroom under timber beams'],
+    ['581185233.jpg', 't', 'w', 'Rooftop pergola at dusk'], ['484942842.jpg', 'i', 't', 'Desk corner with copper chair'], ['462003924.jpg', 'i', '', 'Lounge with grey sofa'],
+    ['581181636.jpg', 'i', '', 'Kitchen and dining from above'], ['581177168.jpg', 'x', 't', 'Building at dusk'], ['581181728.jpg', 'i', '', 'Bathroom vanity'],
+    ['451920752.jpg', 'i', '', 'Studio with hexagon tiles'], ['581185235.jpg', 't', '', 'Terrace lounge'], ['462004078.jpg', 'i', '', 'Living room with walnut slats'],
+    ['581181645.jpg', 'i', 't', 'Lit niche and sofa'], ['484943036.jpg', 'i', 'w', 'Sofa and walnut coffee table'], ['581182020.jpg', 'i', '', 'Bed with lit niches'],
+    ['581181925.jpg', 'i', '', 'Kitchen with marble splashback'], ['581181625.jpg', 't', 't', 'Terrace seating'], ['451920757.jpg', 'i', '', 'Studio bedroom'],
+    ['581181858.jpg', 'i', '', 'Living room with pendant light'], ['462004559.jpg', 'i', '', 'Lounge and walk-in shower'], ['581185229.jpg', 'x', 'w', 'Aerial view of the rooftop'],
+    ['451920731.jpg', 'i', '', 'Studio lounge and bed'], ['581181663.jpg', 'i', '', 'Dining table'], ['581181776.jpg', 'i', 't', 'Apartment entrance'],
+    ['581181794.jpg', 'i', 'w', 'Panoramic living room'], ['462004232.jpg', 'i', '', 'Studio with ring chandelier'], ['581181750.jpg', 'i', '', 'Panoramic bedroom'],
+    ['484942924.jpg', 'i', '', 'Marble TV wall'], ['581182069.jpg', 'i', '', 'Hallway with timber beams']
+  ];
+  componentDidMount() {
+    this.onR = () => this.setState({ mobile: innerWidth < 700 });
+    this.onL = e => this.setState({ lang: e.detail });
+    this.onK = e => {
+      if (this.state.lb < 0) return;
+      if (e.key === 'Escape') this.close(); if (e.key === 'ArrowRight') this.step(1); if (e.key === 'ArrowLeft') this.step(-1);
+    };
+    addEventListener('resize', this.onR); addEventListener('sq-lang', this.onL); addEventListener('keydown', this.onK);
+    const go = () => window.SQ ? SQ.scan() : setTimeout(go, 50); go();
+  }
+  componentWillUnmount() { removeEventListener('resize', this.onR); removeEventListener('sq-lang', this.onL); removeEventListener('keydown', this.onK); }
+  componentDidUpdate(_, p) {
+    if (p.lb < 0 && this.state.lb >= 0 && window.gsap) gsap.fromTo('[data-lb]', { opacity: 0 }, { opacity: 1, duration: .8, ease: 'power3.out' });
+    if (p.lb !== this.state.lb && this.state.lb >= 0 && window.gsap) gsap.fromTo('[data-lbimg]', { opacity: 0, scale: .96 }, { opacity: 1, scale: 1, duration: .8, ease: 'expo.out' });
+  }
+  visible() { return this.IMG.map((m, i) => i).filter(i => this.state.f === 'all' || this.IMG[i][1] === this.state.f); }
+  pick(f) {
+    if (f === this.state.f) return;
+    const F = window.Flip, st = F && F.getState('[data-gi]');
+    this.setState({ f }, () => {
+      if (!F) return;
+      F.from(st, { duration: 1, ease: 'power3.out', scale: true, onEnter: els => gsap.fromTo(els, { opacity: 0, scale: .9 }, { opacity: 1, scale: 1, duration: .9, ease: 'power3.out' }), onComplete: () => ScrollTrigger.refresh() });
+    });
+  }
+  open(i) { this.setState({ lb: this.visible().indexOf(i) }); window.SQ && SQ.lock(true); }
+  close() { this.setState({ lb: -1 }); window.SQ && SQ.lock(false); }
+  step(d) { const n = this.visible().length; this.setState(s => ({ lb: (s.lb + d + n) % n })); }
+  renderVals() {
+    const sr = this.state.lang === 'sr', m = this.state.mobile, vis = this.visible();
+    const F = [['all', 'All', 'Сите'], ['i', 'Interior', 'Ентериер'], ['t', 'Terrace', 'Тераса'], ['x', 'Exterior', 'Надвор']];
+    const filters = F.map(([k, en, s]) => ({ label: sr ? s : en, count: k === 'all' ? this.IMG.length : this.IMG.filter(x => x[1] === k).length, bg: this.state.f === k ? '#0C1820' : 'transparent', fg: this.state.f === k ? '#F4F1EA' : '#0E1A24', pick: () => this.pick(k) }));
+    const items = this.IMG.map((x, i) => ({ id: i, src: 'uploads/' + x[0], alt: x[3], disp: vis.includes(i) ? 'block' : 'none', rs: x[2] === 't' ? 2 : 1, cs: x[2] === 'w' && !m ? 2 : 1, open: () => this.open(i) }));
+    const lb = this.state.lb, cur = lb >= 0 ? this.IMG[vis[lb]] : null, pad = n => String(n).padStart(2, '0');
+    return {
+      filters, items, minCol: m ? '150px' : '260px', rowH: m ? '170px' : '260px',
+      lbOpen: lb >= 0, lbSrc: cur ? 'uploads/' + cur[0] : '', lbAlt: cur ? cur[3] : '', counter: pad(lb + 1) + ' / ' + pad(vis.length),
+      close: () => this.close(), prev: () => this.step(-1), next: () => this.step(1),
+      ts: e => { this.tx = e.touches[0].clientX; }, te: e => { const dx = e.changedTouches[0].clientX - this.tx; if (Math.abs(dx) > 50) this.step(dx < 0 ? 1 : -1); }
+    };
+  }
+}
+</script>
+</body>
+</html>
